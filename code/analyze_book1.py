@@ -135,7 +135,7 @@ def random_word(hist):
 
 
 def main():
-    hist = process_file('158-0.txt', skip_header=True)
+    hist = process_file('../../exersizes/gutenberg/kafka.txt', skip_header=True)
     print('Total number of words:', total_words(hist))
     print('Number of different words:', different_words(hist))
 
@@ -143,13 +143,6 @@ def main():
     print('The most common words are:')
     for freq, word in t[0:20]:
         print(word, '\t', freq)
-
-    words = process_file('words.txt', skip_header=False)
-
-    diff = subtract(hist, words)
-    print("The words in the book that aren't in the word list are:")
-    for word in diff.keys():
-        print(word, end=' ')
 
     print("\n\nHere are some random words from the book")
     for i in range(100):
