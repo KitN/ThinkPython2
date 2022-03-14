@@ -17,15 +17,21 @@ class Time:
        
     attributes: hour, minute, second
     """
+    def print_time(self):
+        """Prints a string representation of the time.
 
+        t: Time object
+        """
+        print('%.2d:%.2d:%.2d' % (self.hour, self.minute, self.second))
 
-def print_time(t):
-    """Prints a string representation of the time.
+    def time_to_int(self):
+        """Computes the number of seconds since midnight.
 
-    t: Time object
-    """
-    print('%.2d:%.2d:%.2d' % (t.hour, t.minute, t.second))
-
+        time: Time object.
+        """
+        minutes = self.hour * 60 + self.minute
+        seconds = minutes * 60 + self.second
+        return seconds
 
 def int_to_time(seconds):
     """Makes a new Time object.
@@ -38,14 +44,6 @@ def int_to_time(seconds):
     return time
 
 
-def time_to_int(time):
-    """Computes the number of seconds since midnight.
-
-    time: Time object.
-    """
-    minutes = time.hour * 60 + time.minute
-    seconds = minutes * 60 + time.second
-    return seconds
 
 
 def add_times(t1, t2):
@@ -56,7 +54,7 @@ def add_times(t1, t2):
     returns: Time
     """
     assert valid_time(t1) and valid_time(t2)
-    seconds = time_to_int(t1) + time_to_int(t2)
+    seconds = t1.time_to_int() + t2.time_to_int()
     return int_to_time(seconds)
 
 
@@ -82,18 +80,18 @@ def main():
     noon_time.second = 0
 
     print('Starts at', end=' ')
-    print_time(noon_time)
+    noon_time.print_time()
 
     # and the run time of the movie is 109 minutes...
     movie_minutes = 109
     run_time = int_to_time(movie_minutes * 60)
     print('Run time', end=' ')
-    print_time(run_time)
+    run_time.print_time()
 
     # what time does the movie end?
     end_time = add_times(noon_time, run_time)
     print('Ends at', end=' ')
-    print_time(end_time)
+    end_time.print_time()
 
 
 if __name__ == '__main__':

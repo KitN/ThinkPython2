@@ -17,7 +17,37 @@ class Point:
 
     attributes: x, y
     """
+    def __init__(self, x=0, y=0):
+        self.x = x
+        self.y = y
 
+    def __str__(self):
+        return('(%g, %g)' % (self.x, self.y))
+
+    def __add__(self, other):
+        if isinstance(other, Point):
+            return self.add_point(other)
+        else:
+            return self.add_tuple(other)
+
+    def __radd__(self, other): # Make point addition commutative
+        return self.__add__(other)
+            
+    def add_point(self, other):
+        sumpoint = Point()
+        x3 = self.x + other.x
+        y3 = self.y + other.y
+        sumpoint.x = x3
+        sumpoint.y = y3
+        return sumpoint
+
+    def add_tuple(self, twople):
+        sumpoint = Point()
+        x3 = self.x + twople[0]
+        y3 = self.y + twople[1]
+        sumpoint.x = x3
+        sumpoint.y = y3
+        return sumpoint
 
 def print_point(p):
     """Print a Point object in human-readable format."""
@@ -60,7 +90,7 @@ def main():
     blank.x = 3
     blank.y = 4
     print('blank', end=' ')
-    print_point(blank)
+    print(blank)
 
     box = Rectangle()
     box.width = 100.0
@@ -71,7 +101,7 @@ def main():
 
     center = find_center(box)
     print('center', end=' ')
-    print_point(center)
+    print(center)
 
     print(box.width)
     print(box.height)
@@ -79,6 +109,11 @@ def main():
     grow_rectangle(box, 50, 100)
     print(box.width)
     print(box.height)
+    three = Point(2, 3)
+    four = Point(4,5)
+    print(three+four)
+    print(three + (1,1))
+    print((1,1) + four)
 
 
 if __name__ == '__main__':
