@@ -29,7 +29,7 @@ class Kangaroo:
         contents: initial pouch contents.
         """
         self.name = name
-        self.pouch_contents = contents
+        self.pouch_contents = [i for i in contents]
 
     def __str__(self):
         """Return a string representaion of this Kangaroo.
@@ -45,6 +45,7 @@ class Kangaroo:
 
         item: object to be added
         """
+        print(f'Adding {item} to a pouch') 
         self.pouch_contents.append(item)
 
 
@@ -55,6 +56,7 @@ kanga.put_in_pouch('car keys')
 kanga.put_in_pouch(roo)
 
 print(kanga)
+print(roo)
 
 # If you run this program as is, it seems to work.
 # To see the problem, trying printing roo.
