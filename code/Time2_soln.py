@@ -33,6 +33,9 @@ class Time:
         hour, minute = divmod(minutes, 60)
         return '%.2d:%.2d:%.2d' % (hour, minute, second)
 
+    def __lt__(self, other):
+        return self.seconds < other.seconds
+
     def print_time(self):
         """Prints a string representation of the time."""
         print(str(self))
@@ -108,6 +111,10 @@ def main():
     t3 = Time(7, 37)
     total = sum([t1, t2, t3])
     print(total)
+
+    print( t1 < t2)
+    print( t2 < t3)
+    print( t3 < t1)
 
 
 if __name__ == '__main__':

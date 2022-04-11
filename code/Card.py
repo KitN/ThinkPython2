@@ -114,6 +114,18 @@ class Deck:
         for i in range(num):
             hand.add_card(self.pop_card())
 
+    def deal_hands(self, hands, handsize):
+        """ Deals a given number of hands of a given size.
+
+        hands: number of hands to be dealt
+        handsize: how many Cards should be in each Hand
+        """
+        table = []
+        for i in range(hands):
+            curhand = Hand()
+            self.move_cards(curhand, handsize)
+            table.append(curhand)
+        return table
 
 class Hand(Deck):
     """Represents a hand of playing cards."""
@@ -147,3 +159,9 @@ if __name__ == '__main__':
     deck.move_cards(hand, 5)
     hand.sort()
     print(hand)
+
+    print('***')
+    headsup = deck.deal_hands(2,5)
+    for hand in headsup:
+        print(hand)
+        print('---')
